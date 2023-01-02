@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Colors from "../../constants/Colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import MyTitle from "../components/ui/MyTitle";
+import Card from "../components/ui/Card";
 
 export default function GameStart({ onPickNumber }) {
   // S T A T E

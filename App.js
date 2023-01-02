@@ -9,14 +9,22 @@ import GameEnd from "./src/screens/GameEnd";
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [roundsNumber, setRoundsNumber] = useState(0);
 
   const pickNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
   };
 
-  const gameOverHandler = () => {
+  const gameOverHandler = (numberOfRounds) => {
     setGameIsOver(true);
+    setRoundsNumber(numberOfRounds);
+  };
+
+  const restartGameHandler = () => {
+    setGameIsOver(false);
+    setUserNumber(null);
+    setRoundsNumber(0);
   };
 
   let screen = <GameStart onPickNumber={pickNumberHandler} />;
@@ -28,7 +36,13 @@ export default function App() {
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameEnd />;
+    screen = (
+      <GameEnd
+        userNumber={userNumber}
+        roundsNumber={roundsNumber}
+        onRestart={restartGameHandler}
+      />
+    );
   }
 
   return (
