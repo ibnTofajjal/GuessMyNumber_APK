@@ -4,18 +4,31 @@ import { ImageBackground, SafeAreaView, StyleSheet, View } from "react-native";
 import Colors from "./constants/Colors";
 import GameScreen from "./src/screens/GameScreen";
 import GameStart from "./src/screens/GameStart";
+import GameEnd from "./src/screens/GameEnd";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState(true);
 
   const pickNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
+  };
+
+  const gameOverHandler = () => {
+    setGameIsOver(true);
   };
 
   let screen = <GameStart onPickNumber={pickNumberHandler} />;
 
   if (userNumber) {
-    screen = <GameScreen userNumber={userNumber} />;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
+  }
+
+  if (gameIsOver && userNumber) {
+    screen = <GameEnd />;
   }
 
   return (
