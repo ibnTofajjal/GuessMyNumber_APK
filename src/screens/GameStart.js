@@ -1,4 +1,13 @@
-import { View, Text, TextInput, StyleSheet, Alert, Image } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Alert,
+  Image,
+  Dimensions,
+  useWindowDimensions,
+} from "react-native";
 import React, { useState } from "react";
 import Colors from "../../constants/Colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -8,6 +17,7 @@ import Card from "../components/ui/Card";
 export default function GameStart({ onPickNumber }) {
   // S T A T E
   const [enteredValue, setEnteredValue] = useState("");
+  const { height, width } = useWindowDimensions();
 
   // H A N D L E R S
   const numberInputHandler = (inputText) => {
@@ -30,8 +40,9 @@ export default function GameStart({ onPickNumber }) {
     onPickNumber(chooseNumber);
   };
 
+  const marginTopDistance = height < 380 ? 30 : 80;
   return (
-    <View style={styles.rootScreen}>
+    <View style={[styles.rootScreen, { marginTop: marginTopDistance }]}>
       <Image
         source={require("../../assets/images/logo.png")}
         style={{
@@ -70,7 +81,7 @@ export default function GameStart({ onPickNumber }) {
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    marginTop: 50,
+    // marginTop: deviceHeight < 380 ? 30 : 80,
     padding: 24,
     textAlign: "center",
   },

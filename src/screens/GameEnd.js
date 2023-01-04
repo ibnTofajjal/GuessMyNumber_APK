@@ -47,6 +47,3 @@ const styles = StyleSheet.create({
     textDecorationColor: Colors.primary,
   },
 });
-
-// react native set the text in the bottom of the screen style
-// Path: src\screens\GameEnd.js
