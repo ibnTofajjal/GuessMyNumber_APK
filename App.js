@@ -5,6 +5,7 @@ import Colors from "./constants/Colors";
 import GameScreen from "./src/screens/GameScreen";
 import GameStart from "./src/screens/GameStart";
 import GameEnd from "./src/screens/GameEnd";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
@@ -46,18 +47,21 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primary, Colors.secondary]}
-      style={styles.container}
-    >
-      <ImageBackground
-        source={require("./assets/images/dice.jpg")}
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.primary, Colors.secondary]}
         style={styles.container}
-        imageStyle={{ opacity: 0.3 }}
       >
-        <SafeAreaView style={styles.container}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/images/dice.jpg")}
+          style={styles.container}
+          imageStyle={{ opacity: 0.3 }}
+        >
+          <SafeAreaView style={styles.container}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
